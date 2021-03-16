@@ -45,6 +45,14 @@
             "required": false,
             "defaultValue": "",
             "helpMarkDown": "Path to store the TFVC item(s). If downloading a file, it can be a file name or an existing folder name. If getting a folder and the path doesn't exist, it will be created."
+        },
+{
+            "name": "SocketTimeout",
+            "type": "integer",
+            "label": "Socket timeout:",
+            "required": false,
+            "defaultValue": 30000,
+            "helpMarkDown": "Timeout connecting to azure devops / tfs in milliseconds."
         }
     ]
 }
