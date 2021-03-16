@@ -54,17 +54,19 @@ async function main()
     try
     {
         var conn;
-        var TFVCPath, LocalPath;
+        var TFVCPath, LocalPath, SocketTimeout;
         
         if(tl.getVariable("Agent.Version")) //Running from the agent
         {
             //Use the context connection - effectively the "Project Collection Build Service"
             var url = tl.getEndpointUrl("SYSTEMVSSCONNECTION", false);
             var token = tl.getEndpointAuthorizationParameter("SYSTEMVSSCONNECTION", "AccessToken", false);
-            conn = vso.WebApi.createWithBearerToken(url, token, null);
+            var options = { socketTimeout: SocketTimeout };
+            conn = vso.WebApi.createWithBearerToken(url, token, options);
 
             TFVCPath = tl.getInput("TFVCPath");
-            LocalPath = tl.getInput("LocalPath"); 
+            LocalPath = tl.getInput("LocalPath");
+            SocketTimeout = t1.getInput("SocketTimeout");
         }
         else //Interactive run
         {
